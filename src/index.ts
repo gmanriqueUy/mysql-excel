@@ -26,7 +26,7 @@ program
     console.log('  $ mysql-excel -v');
     console.log('  $ mysql-excel -H');
     console.log('  $ mysql-excel -u octocat -p tentacles -d github');
-    console.log('  $ mysql-excel -u octocat -p tentacles -d github -H 127.0.0.1 -P 33066');
+    console.log('  $ mysql-excel -u octocat -p tentacles -d github -h 127.0.0.1 -P 33066');
   })
   .action(mysqlExcelAction);
 
