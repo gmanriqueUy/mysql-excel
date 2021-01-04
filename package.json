@@ -16,7 +16,8 @@
     "prepare": "npm run build"
   },
   "files": [
-    "lib/"
+    "lib/",
+    "README.md"
   ],
   "keywords": [
     "mysql",
