@@ -9,9 +9,12 @@ const saveExcelFile = (fileName: string, data: QueryResult[]) => {
     const ws = XLSX.utils.json_to_sheet(queryResult);
 
     ws["!cols"] = Object.keys(queryResult[0]).map((key) => ({
-      wch: Math.max(
-        key.length,
-        ...queryResult.map((row) => (row[key] ? row[key].toString().length : 0))
+      wch: queryResult.reduce(
+        (maxLength, row) =>
+          row[key]
+            ? Math.max(maxLength, row[key].toString().length)
+            : maxLength,
+        key.length
       ),
     }));
 
