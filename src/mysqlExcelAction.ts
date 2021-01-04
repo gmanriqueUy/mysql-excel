@@ -8,10 +8,17 @@ import saveExcelFile from "./saveExcelFile";
 type CommanderAction = Parameters<typeof action>[0];
 export type QueryResult = [RowDataPacket[], FieldPacket[]];
 
+const getWelcomeMessage = (database: string): string =>
+`Using database '${database}'.
+
+Run some 'select' queries below.
+Enter 'exit' once you are ready to get an excel file with the results of your queries.
+`;
+
 const isExit = (query: string): boolean =>
   ["exit", "exit;"].includes(query.toLowerCase());
 
-const getQueryValidator = (connection: Connection) => async (query: string) => {
+const getQueryValidator = (connection: Connection) => async (query: string): Promise<string | boolean> => {
   if (isExit(query)) {
     return true;
   }
@@ -34,6 +41,14 @@ const getQueryValidator = (connection: Connection) => async (query: string) => {
   }
 };
 
+const validateFileName = async (fileName: string): Promise<string | boolean> => {
+  if (!fileName.trim().length) {
+    return "Enter a valid file name";
+  }
+
+  return true;
+};
+
 const mysqlExcelAction: CommanderAction = async ({
   host,
   port,
@@ -49,9 +64,7 @@ const mysqlExcelAction: CommanderAction = async ({
     database,
   });
 
-  console.log(`Using database '${database}'.
-Write a query below:
-`);
+  console.log(getWelcomeMessage(database));
 
   const validateQuery = getQueryValidator(connection);
   const results: QueryResult[] = [];
@@ -88,6 +101,7 @@ Write a query below:
     {
       name: "fileName",
       message: "Enter the name of the excel file:",
+      validate: validateFileName,
     },
   ]);
 
