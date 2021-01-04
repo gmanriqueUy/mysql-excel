@@ -21,7 +21,7 @@ Usage: mysql-excel [options]
 
 Options:
   -v, --version              Output version and exit
-  -h, --host <host>         Host to connect to (default: "localhost")
+  -h, --host <host>          Host to connect to (default: "localhost")
   -u, --user <user>          User for login
   -p, --password <password>  Password to use when connecting to the server
   -d, --database <database>  Database to query
@@ -32,7 +32,7 @@ Examples:
   $ mysql-excel -v
   $ mysql-excel -H
   $ mysql-excel -u octocat -p tentacles -d github
-  $ mysql-excel -u octocat -p tentacles -d github -H 127.0.0.1 -P 33066
+  $ mysql-excel -u octocat -p tentacles -d github -h 127.0.0.1 -P 33066
 ```
 
 ------
@@ -55,7 +55,7 @@ Enter some `select` queries on the prompt:
  > select * from gists;
 ```
 
-Type `exit` when all desired queries are executed.
+Type `exit` when you are done executing queries.
 <br>
 Enter the name of the excel file on the prompt and hit enter.
 
