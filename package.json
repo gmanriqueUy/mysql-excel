@@ -1,6 +1,6 @@
 {
   "name": "mysql-excel",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A CLI application to run queries on a mysql database and save the results in excel files",
   "engines": {
     "node": ">=8"
